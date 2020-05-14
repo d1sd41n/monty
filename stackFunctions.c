@@ -77,10 +77,13 @@ int delete_dnode(stack_t **top)
  * @top: top of the stack
  * Return: the number of the top
  */
-void get_top_n(const stack_t *top)
+void get_top_n(const stack_t *top, int row)
 {
 	if (top)
+	{
 		printf("%d\n", top->n);
-	fprintf(stderr, "L<linenumber>: can't pint, stack empty\n");
+		return;
+	}
+	fprintf(stderr, "L%d: can't pint, stack empty\n", row);
 	exit(EXIT_FAILURE);
 }
