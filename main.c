@@ -16,11 +16,14 @@ int execute(char *line[], stack_t **top)
 		val = atoi(line[1]);
 		add_dnodeint(top, val);
 	}
-	else if (strcmp(line[0], "pint") == 0)
+	else if (strcmp(line[0], "pall") == 0)
 	{
 		print_dlistint(*top);
 	}
-
+	else if (strcmp(line[0], "pint") == 0)
+	{
+		get_top_n(*top);
+	}
 	return (0);
 
 }
