@@ -14,6 +14,7 @@ int main(int argc, char *argv[])
 	int line_number = 0;
 	size_t buffer_size = 80;
 	char *buffer = malloc(buffer_size * sizeof(char));
+	char *tokens;
 
 	check_mfile(argc);
 	fd = fopen(argv[1], "r");
@@ -24,10 +25,11 @@ int main(int argc, char *argv[])
 	}
     	while(-1 != getline(&buffer, &buffer_size, fd))
     	{
-        	printf("%d: %s", ++line_number, buffer);
+		    tokens = strtok(buffer, " ");
+		    //printf("%s\n", tokens[0]);
     	}
+
     	fflush(stdout);
-	printf("%s\n", argv[1]);
 	fclose(fd);
 	return (0);
 }
