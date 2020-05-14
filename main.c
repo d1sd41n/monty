@@ -8,7 +8,7 @@
  * @row: arguments pointer.
  * Return: final .status.
  */
-int execute(char *line[], stack_t **top, int i, int row)
+void execute(char *line[], stack_t **top, int i, int row)
 {
 	int val;
 
@@ -18,10 +18,16 @@ int execute(char *line[], stack_t **top, int i, int row)
 			push_error_1(row);
 		val = atoi(line[1]);
 		add_dnodeint(top, val);
+		return;
 	}
 	else if (strcmp(line[0], "pall") == 0)
+	{
 		print_dlistint(*top);
-	return (0);
+		return;
+	}
+	else if (strcmp(line[0], "\n") == 0 || strcmp(line[0], "nop") == 0)
+		return;
+	no_command_error(row);
 }
 
 /**
@@ -44,7 +50,7 @@ int main(int argc, char *argv[])
 	if (buffer == NULL)
 	{
 		free(buffer);
-		exit(EXIT_FAILURE);
+		malloc_error();
 	}
 	if (fd == NULL)
 	{
@@ -54,11 +60,11 @@ int main(int argc, char *argv[])
 	while (-1 != getline(&buffer, &buffer_size, fd))
 	{
 		row++;
-		command = strtok(buffer, " \n");
+		command = strtok(buffer, " \n\t\r");
 		for (i = 0; i < 2 && command != NULL; i++)
 		{
 			line[i] = command;
-			command = strtok(NULL, " \n");
+			command = strtok(NULL, " \n\t\r");
 		}
 		execute(line, &top, i, row);
 	}

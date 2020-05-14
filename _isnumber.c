@@ -7,11 +7,21 @@
  */
 int _isnumber(const char *c)
 {
-	while (*c)
+	int i = 0, n;
+
+	n = strlen(c);
+
+	if (c[0] == '-')
 	{
-		if (*c < '0' || *c > '9')
+		if (n == 1)
 			return (0);
-		c++;
+		i++;
+	}
+	while (c[i] != '\0')
+	{
+		if (c[i] < '0' || c[i] > '9')
+			return (0);
+		i++;
 	}
 	return (1);
 }

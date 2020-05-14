@@ -46,5 +46,7 @@ void check_mfile(int ac);
 int _isnumber(const char *c);
 void clean_stack(stack_t **top);
 void push_error_1(int row);
+void no_command_error(int row);
+void malloc_error(void);
 
 #endif

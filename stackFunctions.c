@@ -34,7 +34,10 @@ stack_t *add_dnodeint(stack_t **top, const int n)
 
 	node = malloc(sizeof(stack_t));
 	if (node == NULL)
-		return (NULL);
+	{
+		free(node);
+		malloc_error();
+	}
 	node->n = n;
 	if (*top == NULL)
 		node->next = NULL;
