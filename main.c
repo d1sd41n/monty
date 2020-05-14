@@ -20,10 +20,6 @@ int execute(char *line[], stack_t **top)
 	{
 		print_dlistint(*top);
 	}
-	else if (strcmp(line[0], "pint") == 0)
-	{
-		get_top_n(*top);
-	}
 	return (0);
 
 }

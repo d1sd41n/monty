@@ -39,7 +39,7 @@ typedef struct instruction_s
 size_t print_dlistint(const stack_t *top);
 stack_t *add_dnodeint(stack_t **top, const int n);
 int delete_dnode(stack_t **top);
-int get_top_n(const stack_t *top);
+void get_top_n(const stack_t *top);
 int swap(stack_t **top);
 int add(stack_t **top);
 void check_mfile(int ac);
