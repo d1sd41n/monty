@@ -4,6 +4,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <ctype.h>
 
 /**
  * struct stack_s - doubly linked list representation of a stack (or queue)
@@ -42,5 +43,7 @@ int get_top_n(const stack_t *top);
 int swap(stack_t **top);
 int add(stack_t **top);
 void check_mfile(int ac);
+int _isnumber(const char *c);
+void clean_stack(stack_t **top);
 
 #endif

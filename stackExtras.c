@@ -21,3 +21,20 @@ int swap(stack_t **top)
 
 	return (1);
 }
+
+/**
+ * clean_stack - prints linkeds list
+ * @top: top of the stack
+ * Return: none
+ */
+void clean_stack(stack_t **top)
+{
+	stack_t *temp;
+
+	while (*top != NULL)
+	{
+		temp = *top;
+		*top = temp->next;
+		delete_dnode(&temp);
+	}
+}

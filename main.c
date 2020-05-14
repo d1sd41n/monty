@@ -1,14 +1,20 @@
 #include "monty.h"
 
 
-
-int execute(char *line[], int isPush, int row, stack_t **top)
+/**
+ * execute - main function of shell.
+ * @line: counter arguments.
+ * @top: arguments pointer.
+ * Return: final .status.
+ */
+int execute(char *line[], stack_t **top)
 {
-	printf("%s %i  line: %i\n", line[0], isPush, row);
+	int val;
 
 	if (strcmp(line[0], "push") == 0)
 	{
-		add_dnodeint(top, 1);
+		val = atoi(line[1]);
+		add_dnodeint(top, val);
 	}
 	else if (strcmp(line[0], "pint") == 0)
 	{
@@ -28,9 +34,9 @@ int execute(char *line[], int isPush, int row, stack_t **top)
 int main(int argc, char *argv[])
 {
 	FILE *fd;
-	int i, isPush, row = 0;
+	int i;
 	size_t buffer_size = 80;
-	char *command, *parameter, *line[1024], *buffer;
+	char *command, *line[1024], *buffer;
 	stack_t *top = NULL;
 
 	check_mfile(argc);
@@ -48,8 +54,6 @@ int main(int argc, char *argv[])
 	}
 	while (-1 != getline(&buffer, &buffer_size, fd))
 	{
-
-		isPush = 1;
 		command = strtok(buffer, " \n");
 		for (i = 0; i < 3 && command != NULL; i++)
 		{
@@ -57,11 +61,11 @@ int main(int argc, char *argv[])
 			command = strtok(NULL, " \n");
 			if (strcmp(line[0], "push") == 0)
 				continue;
-			isPush = 0;
 			break;
 		}
-		execute(line, isPush, ++row, &top);
+		execute(line, &top);
 	}
+	clean_stack(&top);
 	free(buffer);
 	fflush(stdout);
 	fclose(fd);
