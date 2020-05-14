@@ -1,27 +1,27 @@
 #include "monty.h"
 
-
 /**
  * execute - main function of shell.
  * @line: counter arguments.
  * @top: arguments pointer.
+ * @i: arguments pointer.
+ * @row: arguments pointer.
  * Return: final .status.
  */
-int execute(char *line[], stack_t **top)
+int execute(char *line[], stack_t **top, int i, int row)
 {
 	int val;
 
 	if (strcmp(line[0], "push") == 0)
 	{
+		if (i < 2 || _isnumber(line[1]) == 0)
+			push_error_1(row);
 		val = atoi(line[1]);
 		add_dnodeint(top, val);
 	}
 	else if (strcmp(line[0], "pall") == 0)
-	{
 		print_dlistint(*top);
-	}
 	return (0);
-
 }
 
 /**
@@ -33,8 +33,8 @@ int execute(char *line[], stack_t **top)
 int main(int argc, char *argv[])
 {
 	FILE *fd;
-	int i;
-	size_t buffer_size = 80;
+	int i, row = 0;
+	size_t buffer_size = 1024;
 	char *command, *line[1024], *buffer;
 	stack_t *top = NULL;
 
@@ -53,16 +53,14 @@ int main(int argc, char *argv[])
 	}
 	while (-1 != getline(&buffer, &buffer_size, fd))
 	{
+		row++;
 		command = strtok(buffer, " \n");
-		for (i = 0; i < 3 && command != NULL; i++)
+		for (i = 0; i < 2 && command != NULL; i++)
 		{
 			line[i] = command;
 			command = strtok(NULL, " \n");
-			if (strcmp(line[0], "push") == 0)
-				continue;
-			break;
 		}
-		execute(line, &top);
+		execute(line, &top, i, row);
 	}
 	clean_stack(&top);
 	free(buffer);
