@@ -49,5 +49,9 @@ void push_error_1(int row);
 void no_command_error(int row);
 void malloc_error(void);
 int delete_dnode_c(stack_t **top);
+int mul(stack_t **top, int row);
+int sub(stack_t **top, int row);
+int dividir(stack_t **top, int row);
+int modulo(stack_t **top, int row);
 
 #endif

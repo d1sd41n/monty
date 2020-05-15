@@ -1,4 +1,4 @@
-push 2
-push 3
-# pop
+push 1
+push 0
+mod
 pall

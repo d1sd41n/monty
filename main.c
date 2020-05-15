@@ -18,37 +18,30 @@ void execute(char *line[], stack_t **top, int i, int row)
 			push_error_1(row);
 		val = atoi(line[1]);
 		add_dnodeint(top, val);
-		return;
 	}
 	else if (strcmp(line[0], "pall") == 0)
-	{
 		print_dlistint(*top);
-		return;
-	}
 	else if (strcmp(line[0], "\n") == 0 || strcmp(line[0], "nop") == 0 ||
 		strcmp(line[0], "#") == 0)
 		return;
 	else if (strcmp(line[0], "pint") == 0)
-	{
 		get_top_n(*top, row);
-		return;
-	}
 	else if (strcmp(line[0], "pop") == 0)
-	{
 		delete_dnode(top, row);
-		return;
-	}
 	else if (strcmp(line[0], "swap") == 0)
-	{
 		swap(top, row);
-		return;
-	}
 	else if (strcmp(line[0], "add") == 0)
-	{
 		add(top, row);
-		return;
-	}
-	no_command_error(row);
+	else if (strcmp(line[0], "mul") == 0)
+		mul(top, row);
+	else if (strcmp(line[0], "sub") == 0)
+		sub(top, row);
+	else if (strcmp(line[0], "div") == 0)
+		dividir(top, row);
+	else if (strcmp(line[0], "mod") == 0)
+		modulo(top, row);
+	else
+		no_command_error(row);
 }
 
 /**
