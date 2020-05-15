@@ -3,17 +3,24 @@
 /**
  * swap - pr*insert_nodein
  * @top: top of the stack
+ * @row: top of the stack
  * Return: nonerewwee
  */
-int swap(stack_t **top)
+int swap(stack_t **top, int row)
 {
 	int n;
 
 	if (top == NULL || *top == NULL)
-		return (-1);
+	{
+		fprintf(stderr, "L%d: can't swap, stack too short\n", row);
+		exit(EXIT_FAILURE);
+	}
 
 	if ((*top)->next == NULL)
-		return (-1);
+	{
+		fprintf(stderr, "L%d: can't swap, stack too short\n", row);
+		exit(EXIT_FAILURE);
+	}
 
 	n = (*top)->n;
 	(*top)->n = (*top)->next->n;
@@ -35,6 +42,6 @@ void clean_stack(stack_t **top)
 	{
 		temp = *top;
 		*top = temp->next;
-		delete_dnode(&temp);
+		delete_dnode_c(&temp);
 	}
 }

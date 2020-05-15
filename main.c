@@ -32,6 +32,21 @@ void execute(char *line[], stack_t **top, int i, int row)
 		get_top_n(*top, row);
 		return;
 	}
+	else if (strcmp(line[0], "pop") == 0)
+	{
+		delete_dnode(top, row);
+		return;
+	}
+	else if (strcmp(line[0], "swap") == 0)
+	{
+		swap(top, row);
+		return;
+	}
+	else if (strcmp(line[0], "add") == 0)
+	{
+		add(top, row);
+		return;
+	}
 	no_command_error(row);
 }
 

@@ -38,15 +38,16 @@ typedef struct instruction_s
 
 size_t print_dlistint(const stack_t *top);
 stack_t *add_dnodeint(stack_t **top, const int n);
-int delete_dnode(stack_t **top);
+int delete_dnode(stack_t **top, int row);
 void get_top_n(const stack_t *top, int row);
-int swap(stack_t **top);
-int add(stack_t **top);
+int swap(stack_t **top, int row);
+int add(stack_t **top, int row);
 void check_mfile(int ac);
 int _isnumber(const char *c);
 void clean_stack(stack_t **top);
 void push_error_1(int row);
 void no_command_error(int row);
 void malloc_error(void);
+int delete_dnode_c(stack_t **top);
 
 #endif
