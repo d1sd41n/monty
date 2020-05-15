@@ -25,7 +25,8 @@ void execute(char *line[], stack_t **top, int i, int row)
 		print_dlistint(*top);
 		return;
 	}
-	else if (strcmp(line[0], "\n") == 0 || strcmp(line[0], "nop") == 0)
+	else if (strcmp(line[0], "\n") == 0 || strcmp(line[0], "nop") == 0 ||
+		strcmp(line[0], "#") == 0)
 		return;
 	else if (strcmp(line[0], "pint") == 0)
 	{

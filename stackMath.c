@@ -3,6 +3,7 @@
 /**
  * add - pr*insert_nodein
  * @top: top of the stack
+ * @row: top of the stack
  * Return: nonerewwee
  */
 int add(stack_t **top, int row)
